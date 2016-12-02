@@ -51,7 +51,7 @@ class Person
   end
 end
 
-input = File.read('day1-input.txt').lines.first
+input = File.read('input.txt').lines.first
 directions = input.split ', '
 
 person = Person.new
