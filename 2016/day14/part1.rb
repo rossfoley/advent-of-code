@@ -12,7 +12,7 @@ class OneTimePad
   end
 
   def find_64th_key
-    65.times { find_next_key }
+    64.times { find_next_key }
     @index
   end
 
@@ -21,16 +21,21 @@ class OneTimePad
       @index += 1
 
       hash = md5 @index
-      repeat = HEX_CHARS.select {|c| hash.include?(c * 3)}
-      next if repeat.empty?
+      char = first_triple hash
+      next if char.nil?
 
-      char = repeat[0]
       match = matches_five_index char
       if match >= 0
         @key_indices << {index: @index, five: match, char: char}
         return true
       end
     end
+  end
+
+  def first_triple hash
+    repeats = HEX_CHARS.map {|c| [c, hash.index(c * 3)]}.reject {|c| c[1].nil?}
+    return nil if repeats.empty?
+    repeats.sort_by {|c| c[1]}.first[0]
   end
 
   def matches_five_index char
