@@ -106,8 +106,10 @@ machine = Assembunny.new(File.read('input.txt').lines)
 machine.registers = {a: 7, b: 0, c: 0, d: 0}
 machine.run_program
 puts "[Part 1] Register a: #{machine.registers[:a]}"
+# Alternatively, this can be computed with 7! + 94 * 99
 
 machine = Assembunny.new(File.read('input.txt').lines)
 machine.registers = {a: 12, b: 0, c: 0, d: 0}
 machine.run_program
 puts "[Part 2] Register a: #{machine.registers[:a]}"
+# Alternatively, this can be computed with 12! + 94 * 99
