@@ -1,5 +1,5 @@
 class Day01
-  def self.part1 input
+  def part1 input
     sum = 0
     chars = input.to_s.chars
     chars.each_with_index do |c, i|
@@ -10,7 +10,7 @@ class Day01
     sum
   end
 
-  def self.part2 input
+  def part2 input
     sum = 0
     chars = input.to_s.chars
     ahead = chars.size / 2
@@ -23,9 +23,11 @@ class Day01
   end
 end
 
+day1 = Day01.new
 input = File.read('input.txt').lines.first.strip
-part1 = Day01.part1(input)
+
+part1 = day1.part1(input)
 puts "Part 1: #{part1}"
 
-part2 = Day01.part2(input)
+part2 = day1.part2(input)
 puts "Part 2: #{part2}"
