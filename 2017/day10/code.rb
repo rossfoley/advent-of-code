@@ -26,12 +26,9 @@ class KnotHash
   # Each chunk of 16 numbers is XOR'd together
   # and then converted to hex
   def hash
-    (0...16).map do |ci|
-      i0 = 16 * ci
-      i1 = 16 * (ci + 1) - 1 
-      xor = @list[i0..i1].reduce(:^)
-      sprintf("%02x", xor)
-    end.join ''
+    @list.each_slice(16).map do |sub|
+      "%02x" % sub.reduce(:^)
+    end.join
   end
 end
 
