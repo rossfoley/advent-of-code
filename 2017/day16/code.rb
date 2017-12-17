@@ -54,6 +54,7 @@ class Day16
   def part2 input
     moves = input.split ','
     dance = Dance.new
+
     latest = nil
     history = []
     
