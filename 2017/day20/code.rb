@@ -46,12 +46,9 @@ class Day20
   def part1 input
     particles = generate_particles input
 
-    # 10,000 ticks should be enough to reach a fixed state
-    10000.times { particles.each {|p| p.tick}}
-
-    # Find the particles that remained closest to <0,0,0> for the longest
-    average = particles.min_by {|p| p.average_distance}
-    average.id
+    # In the long run, the lowest absolute accceleration will stay closest to <0,0,0>
+    particles.sort_by! {|p| p.a.map(&:abs).reduce(:+)}
+    particles.first.id
   end
 
   def part2 input
