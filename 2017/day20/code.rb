@@ -20,10 +20,6 @@ class Particle
 
     @positions << @p.dup
   end
-
-  def average_distance
-    @positions.map {|np| np.map(&:abs).reduce(:+)}.reduce(:+) / @positions.size
-  end
 end
 
 class Day20
@@ -67,6 +63,7 @@ class Day20
       particles.each {|p| p.tick}
     end
 
+    # Count the remaining particles
     particles.size
   end
 end
