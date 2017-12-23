@@ -1,3 +1,5 @@
+require 'prime'
+
 class CPU
   attr_reader :registers, :instructions, :pc, :muls
 
@@ -39,10 +41,7 @@ class CPU
   end
 
   def run
-    while @pc < @instructions.size && @pc >= 0
-      tick
-      p @registers
-    end
+    tick while @pc < @instructions.size && @pc >= 0
   end
 
   def parse_value value
@@ -62,10 +61,12 @@ class Day23
   end
 
   def part2 input
-    cpu = CPU.new input
-    cpu.registers['a'] = 1
-    cpu.run
-    cpu.registers['h']
+    # The assembly code computes the number of non-primes
+    # between 109,900 and 126,900 at intervals of 17
+    (0..1000).map do |i|
+      b = 109900 + 17 * i
+      Prime.prime?(b) ? 0 : 1
+    end.reduce(:+)
   end
 end
 
