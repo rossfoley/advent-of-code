@@ -47,10 +47,10 @@ class Day02
   end
 end
 
-day1 = Day02.new
+day02 = Day02.new
 input = File.read('input.txt').lines.map(&:strip)
 
-part1 = day1.part1(input)
+part1 = day02.part1(input)
 puts "Part 1: #{part1}"
 
-day1.part2(input)
+day02.part2(input)
