@@ -60,6 +60,8 @@ class Day06
     grid = (0...800).map do
       [0] * 800
     end
+
+    # Offset by 200 to make the grid go from -200 -> 600
     x_off = 200
     y_off = 200
 
