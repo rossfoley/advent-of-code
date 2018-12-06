@@ -21,6 +21,8 @@ class Day06
             manhattan = (position[:x] - x).abs + (position[:y] - y).abs
             [manhattan, position]
           end.sort_by {|a| a[0]}
+
+          # Ignore positions that are equidistant to two points
           if distances[0][0] != distances[1][0]
             grid[x][y] = distances[0][1][:id]
           end
@@ -28,6 +30,7 @@ class Day06
       end
     end
 
+    # Any ID along an edge of the grid has infinite area so exclude it
     exclusions = []
     (0...400).each do |i|
       exclusions << grid[0][i]
@@ -42,9 +45,10 @@ class Day06
       [id, flat_grid.count(id)]
     end.sort_by {|c| c[1]}.reverse
 
+    # Find the first non-infinite area
     counts.each do |c|
       if !exclusions.include? c[0]
-        return c
+        return c[1]
       end
     end
   end
